@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import data from "../../data";
+import ProductForm from "../administration/admin/productForm/ProductForm";
+import AuthForm from "../administration/auth/AuthForm";
 import Cart from "../cart/Cart";
 import ProductList from "../productList/ProductList";
 import Section from "../section/Section";
@@ -13,6 +15,19 @@ class Main extends Component {
     visited: []
   };
 
+  // async componentDidMount() {
+  //   const response = await axios.get("https://_________/products.json");
+  //   console.log(response);
+  // const data = Object.keys(response.data).map(item => ({ ...response.data[item], id: item }));
+  // console.log(data);
+  // this.setState({ products: data });
+  // }
+  //и затем отрисовать полученные от бэкенда данные
+
+  addNewProduct = (product) => {
+    this.setState(prev => ({ products: [...prev.products, product] }));
+  };
+
   addToCart = product => {
     if (this.state.cart.some(cartItem => cartItem.id === product.id)) {
       this.setState(prev => ({
@@ -22,6 +37,7 @@ class Main extends Component {
       }));
       return;
     }
+
 
     this.setState(prev => ({
       cart: [...prev.cart, product]
@@ -52,6 +68,10 @@ class Main extends Component {
   render() {
     return (
       <MainStyled>
+        <Section title="Product form"><ProductForm addNewProduct={ this.addNewProduct} /></Section>
+        
+        <Section title="Authorization"><AuthForm/></Section>
+      
         <Section title="Cart">
           <Cart cart={this.state.cart} removeFromCart={this.removeFromCart} addItem={this.addItem} removeItem={ this.removeItem} />
         </Section>

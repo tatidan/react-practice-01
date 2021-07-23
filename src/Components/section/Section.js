@@ -3,7 +3,6 @@ import colors from "../../styles/colors";
 import { SectionStyled } from "./SectionStyled";
 
 const Section = ({ children, title }) => {
-  console.log(colors);
   return (
     <SectionStyled colors={colors}>
       <h2 className="sectionTitle">{title.toUpperCase()}</h2>

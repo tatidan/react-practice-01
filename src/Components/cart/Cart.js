@@ -16,6 +16,7 @@ const Cart = ({ cart, removeFromCart, addItem, removeItem }) => {
             removeFromCart={removeFromCart} addItem={addItem} removeItem={removeItem} />
         ))}
       </ul>
+      
       {getTotalPrice() ? (
         <p className="totalCount">
           <span>Total:</span> <span>{getTotalPrice()} UAH</span>
